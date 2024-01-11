@@ -1,0 +1,25 @@
+{% load static %}
+<div class="list-group mt-1" >
+    {% for category  in categories %}
+
+        {% if category.slug == selected_category %}
+            <a 
+                class="list-group-item list-group-item-action  active"  
+                href="{% url "category_ihtiyac_hanem" category.slug %} "
+            >
+                {{category.name|title}}
+            </a>
+        
+        {% else %}
+    
+           <a 
+                class="list-group-item list-group-item-action "  
+                href="{% url "category_ihtiyac_hanem" category.slug %} "
+            >
+                {{category.name|title}}
+            </a>
+        {% endif %}
+
+        
+    {% endfor %}
+</div>

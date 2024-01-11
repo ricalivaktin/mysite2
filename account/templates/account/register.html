@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css_files %}
+   <link rel="stylesheet" href="{% static "account/css/acc.css" %}">
+{% endblock css_files %}
+
+{% block title %}register-page{% endblock  %}
+
+{% block content %}
+
+<h1 class="bg-info text-center h3 p-3 mb-3">Welcome The Register Page </h1>
+
+
+<div class="container">
+    <div class="row">
+       <!-- Register İÇERİK BURYA GELCEK EKLENEMCEK -->
+ 
+ 
+       <form action="{% url "register" %}" method="POST">
+ 
+         {% csrf_token %}
+         {% if error %}
+            <div class="alert alert-danger p-3 w-50 text-center">
+                <span class="badge bg-dark p-2 text-center fw-bold">
+                 {{error}}
+                </span>
+            </div>
+         {% endif %}
+ 
+
+         <div class="row">
+            <div class="col-6">
+                <div class="mb-3">
+                    <label for="username" class="form-label">User Name</label>
+                    <input type="text" class="form-control" name="username" placeholder="kullanıcı Adi Girin..."  value="{{username}}">
+                </div>
+
+            </div>
+            <div class="col-6">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email"  placeholder="E-mail Girin..."  value="{{email}}">
+                </div>
+
+            </div>
+         </div>
+         
+
+         <div class="row">
+            <div class="col-6">
+                <div class="mb-3">
+                    <label for="firstname" class="form-label">First Name</label>
+                    <input type="text" class="form-control" name="firstname"  placeholder="Ad'ızı Girin..." value="{{firstname}}">
+                </div>
+
+            </div>
+            <div class="col-6">
+                <div class="mb-3">
+                    <label for="lastname" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" name="lastname" placeholder="SoyAd'ızı Girin..."  value="{{lastname}}">
+                </div>
+
+            </div>
+         </div>
+
+         <div class="row">
+            <div class="col-6">
+                <div class="mb-3">
+                    <label for="password" class="form-label">PassWord</label>
+                    <input type="password" class="form-control" name="password" placeholder="Bir Şifre Girin...">
+                </div>
+
+            </div>
+            <div class="col-6">
+                <div class="mb-3">
+                    <label for="rpassword" class="form-label">RE-PassWord</label>
+                    <input type="password" class="form-control" name="rpassword" placeholder="Şifre'yi Tekrar  Girin...">
+                </div>
+
+            </div>
+         </div>
+
+        
+ 
+         <input  class="btn btn-primary w-100" type="submit" value="Login">
+ 
+       </form>
+ 
+ 
+ 
+ 
+       </div>
+    </div>
+ </div>
+
+{% endblock content %}
+
+
+{% block js_files %}
+    <script src="{% static "account/js/acc.js" %}"></script>
+{% endblock  %}

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css_files %}
+   <link rel="stylesheet" href="{% static "_mainApp/css/blogs.css" %}">
+{% endblock css_files %}
+
+{% block title %}BLOG-PAGE{% endblock  %}
+
+
+
+
+{% block content %} 
+<h1>BLOG PAGE</h1>
+<hr>
+<div class="container">
+    <div class="row">
+      <div class="col-3">
+        <!--CATEGORY ALANI BURASI HEADER -->
+         {% include "partials/_categoryies.html" %}
+      </div>
+      <div class="col-9">
+        <h1>BLOG Ürünleri </h1>
+        <hr>
+        
+         {% comment %} {% block content %} {% endblock  %} {% endcomment %}
+         {% include "partials/_table.html" %}
+         {% include "partials/_alert_layout.html" %}
+
+         <!-- PRODUCT blog EKLEME ALANI -->
+
+         {% if blogs|length > 0 %}
+         
+            {% for blog in blogs %}
+               {% if blog.is_active %}
+                  {% include "partials/_blog.html" %}
+               {% endif %}
+            {% endfor %}
+
+         {% else %}
+
+            <div class="alert alert-warning">
+               No Bloks ... Ürün yok
+            </div>
+
+
+         {% endif %}
+
+
+       
+
+      </div>
+   </div>
+</div>
+
+{% endblock content %}
+
+
+
+
+   
+{% block js_files %}
+    <script src="{% static "_mainApp/js/blogs.js" %}"></script>
+{% endblock  %}

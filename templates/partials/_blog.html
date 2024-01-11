@@ -1,0 +1,28 @@
+{% load static %}
+<div class="row">
+          <div class="card mb-3 w-75" >
+              <div class="row g-0">
+                  <div class="col-md-4">
+                      <!--! bu alan daha ImageField megtare olmadan olce isi carhfield içindi -->
+                      {% comment %}! <img src="{% static 'images/'|add:blog.image %}" class="img-fluid rounded-start" alt="..."> {% endcomment %}
+                      <!-- BU ALAN İSE ImageFİLED  MODELSE EKLENDIKTEN VE IMAGE FİELD CONFIGRASYONU YAPILDIKTAN SONRA -->
+                      <img src="{{blog.image.url}}" class="img-fluid rounded-start" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title">
+                          <a href="{% url 'blogs_details' blog.slug %}">Ürüne Git: {{blog.title}}</a>
+                        </h5>
+      
+                        <p class="card-text">AÇIKLAMA : {{blog.description|safe|slice:"0:300"}}.</p>
+                        <p class="card-text"><small class="text-muted">ürün stok bilgisi : {{blog.id}}</small></p>
+                        {% if blog.is_active %}
+                          <span class="badge bg-success">Aktif Ürün satişta</span>
+                        {% else %}
+                           <span class="badge bg-danger">Passiv Ürün satişta Değil !!!</span> 
+                        {% endif %}
+                      </div>
+                   </div>
+               </div>
+           </div>
+</div>

@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css_files %}
+   <link rel="stylesheet" href="{% static "_mainApp/css/index.css" %}">
+{% endblock css_files %}
+
+{% block title %}Adding-Page{% endblock  %}
+
+{% block content %}
+
+<h1 class="bg-success text-center h3 p-3 mb-3">Welcome The Adding New Category Page.. </h1>
+<hr>
+
+
+<!-- category ekleme alanı -->
+<hr><br><hr>
+
+<div class="container">
+   <div class="row">
+      <div class="col-4">
+        <!--Adding ALANI BURASI HEADER -->
+        <form action="{% url "adding1" %}" method="POST">
+
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label for="name" class="form-label">Category Name </label>
+                <input type="text" class="form-control" name="name">
+            </div>
+         
+           
+            <input class="btn btn-success w-100" type="submit" value="Save New Category">
+        </form>
+        
+         
+
+      </div>
+
+      <div class="col-4">
+        <h4>Category Infos Controller</h4>
+        <ul>
+            {% for info in prod_infos %}
+                <li>{{info}}</li>
+            {% endfor %}
+        </ul>
+      </div>
+
+
+      <div class="col-4">
+        <h4>Adding Product +++</h4>
+        <ul>
+            <li><a  class="btn btn-danger" href="{% url "adding" %}">Product Add</a></li>
+        </ul>
+      </div>
+
+
+   </div>
+</div>
+
+{% endblock content %}
+
+
+{% block js_files %}
+    <script src="{% static "_mainApp/js/index.js" %}"></script>
+{% endblock  %}

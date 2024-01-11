@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css_files %}
+   <link rel="stylesheet" href="{% static "_mainApp/css/index.css" %}">
+{% endblock css_files %}
+
+{% block title %}İNDEX-PAGE{% endblock  %}
+
+{% block content %}
+
+<h1>İNDEX - HOME - PAGE</h1>
+<hr>
+
+<div class="container">
+   <div class="row">
+      <div class="col-3">
+        <!--CATEGORY ALANI BURASI HEADER -->
+         {% include "partials/_categoryies.html" %}
+      </div>
+      <div class="col-9">
+        <h1>Home Ürünleri</h1>
+        <hr>
+         {% comment %} {% block content %} {% endblock  %} {% endcomment %}
+         {% include "partials/_table.html" %}
+         {% include "partials/_alert_layout.html" %}
+
+         <!-- PRODUCTs blog EKLEME ALANI -->
+         {% for blog in blogs %}
+
+            {% if blog.is_home and  blog.is_active %} <!-- filitreleme bu -->
+
+               {% include "partials/_blog.html" %}
+
+            {% endif %}
+
+         {% endfor %}
+
+         
+
+      </div>
+   </div>
+</div>
+
+{% endblock content %}
+
+
+{% block js_files %}
+    <script src="{% static "_mainApp/js/index.js" %}"></script>
+{% endblock  %}

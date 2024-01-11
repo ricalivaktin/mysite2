@@ -1,0 +1,90 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-warning">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url "home" %}">
+        <i class="fa fa-cog fa-spin" style="color:red;"></i>
+       
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url "home" %}">ihtiyachanem</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url "blogs" %}">Blogs</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url "adding" %}">adding</a>
+          </li>
+        
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              CATEGORYİES
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              {% for category in categories %}
+                {% if  category.slug == selected_category %}
+                  <li class="list-group-item list-group-item-action  active"><a class="dropdown-item"   href="{% url "category_ihtiyac_hanem" category.slug %} " > {{category.name|title}}</a></li>
+                {% else %}
+                  <li class="list-group-item list-group-item-action  "><a class="dropdown-item"   href="{% url "category_ihtiyac_hanem" category.slug %} " > {{category.name|title}}</a></li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </li>
+          
+           <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8000/admin/">Admin-Girişi</a>
+          </li>
+        </ul>
+        <!-- acount || alanı kullanıcı gırıs alanı --> 
+
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+          {% if user.is_authenticated %}
+               <li class="nav-item">
+                 <a class="nav-link active" aria-current="page" href="{% url "logout" %}">Logout</a>
+               </li>
+             
+               <li class="nav-item">
+                 <a class="nav-link active" aria-current="page" href="#">Welcome ,
+                  <span class="badge bg-danger p-2">{{user.username|title}}</span>
+                   {% comment %} {{user.get_full_name}} {% endcomment %}
+                  </a>
+               </li>
+
+
+          {% else %}
+
+
+               <li class="nav-item">
+                 <a class="nav-link active" aria-current="page" href="{% url "login" %}">Login</a>
+               </li>
+     
+               <li class="nav-item">
+                 <a class="nav-link active" aria-current="page" href="{% url "register" %}">Register</a>
+               </li>
+
+
+          {% endif %}
+
+          
+        
+         
+        </ul>
+
+
+
+        
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
